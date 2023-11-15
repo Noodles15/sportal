@@ -58,10 +58,10 @@
               <label>Student Full English Name:   </label>
           </section>
         <section class="col col-lg-10" style="height:50px">           
-           <asp:TextBox ID="txtReason" runat="server" CssClass="form-control"
+           <asp:TextBox ID="ENametxt" runat="server" CssClass="form-control"
                ValidationGroup="NewCompany" Width="50%" MaxLength="250"></asp:TextBox>
             <asp:RequiredFieldValidator
-                ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtReason"
+                ID="RequiredFieldValidator1" runat="server" ControlToValidate="ENametxt"
                 ErrorMessage="*" InitialValue=""
                 Text="*" ValidationGroup="NewCompany"
                 SetFocusOnError="True" Style="font-weight: bold; 
@@ -74,10 +74,10 @@
               <label>Student Full Arabic Name:   </label>
           </section>
         <section class="col col-lg-10" style="height:50px">           
-           <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"
+           <asp:TextBox ID="ANametxt" runat="server" CssClass="form-control"
                ValidationGroup="NewCompany" Width="50%" MaxLength="250"></asp:TextBox>
             <asp:RequiredFieldValidator
-                ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtReason"
+                ID="RequiredFieldValidator2" runat="server" ControlToValidate="ANametxt"
                 ErrorMessage="*" InitialValue=""
                 Text="*" ValidationGroup="NewCompany"
                 SetFocusOnError="True" Style="font-weight: bold; 
@@ -89,10 +89,10 @@
               <label>Personal Email:   </label>
           </section>
         <section class="col col-lg-10" style="height:50px">           
-           <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"
+           <asp:TextBox ID="PEmailtxt" runat="server" CssClass="form-control"
                ValidationGroup="NewCompany" Width="50%" MaxLength="250"></asp:TextBox>
             <asp:RequiredFieldValidator
-                ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtReason"
+                ID="RequiredFieldValidator3" runat="server" ControlToValidate="PEmailtxt"
                 ErrorMessage="*" InitialValue=""
                 Text="*" ValidationGroup="NewCompany"
                 SetFocusOnError="True" Style="font-weight: bold; 
@@ -107,16 +107,35 @@
           </section>
            <section class="col col-lg-10" style="height:50px">   
         
-          <asp:TextBox ID="Excuse_txtFrom" runat="server" CssClass="form-control" ValidationGroup="NewCompany" Width="50%" MaxLength="250"></asp:TextBox>
-          <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server"  ControlToValidate="txtReason"
+          <asp:TextBox ID="BDate" runat="server" CssClass="form-control" ValidationGroup="NewCompany" Width="50%" MaxLength="250"></asp:TextBox>
+          <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server"  ControlToValidate="BDate"
               ErrorMessage="*" InitialValue=""
               Text="*" ValidationGroup="NewCompany" SetFocusOnError="True" ForeColor="Red"></asp:RequiredFieldValidator>
-          <ajaxToolkit:CalendarExtender Format="MM/dd/yyyy" ID="CalendarExtender1" PopupButtonID="imgPopup" runat="server" TargetControlID="Excuse_txtFrom"></ajaxToolkit:CalendarExtender>
+          <ajaxToolkit:CalendarExtender Format="MM/dd/yyyy" ID="CalendarExtender1" PopupButtonID="imgPopup" runat="server" TargetControlID="BDate"></ajaxToolkit:CalendarExtender>
         </section>
        </div>
       
 
 
+       <div class="row">
+         <section class="col col-lg-2" style="height:50px">
+              <label> Gender:  </label>
+          </section>
+        <section class="col col-lg-10" style="height:50px">     
+         <asp:DropDownList ID="GenderDropDown" runat="server" Width="50%">
+          <asp:ListItem>Male</asp:ListItem>
+          <asp:ListItem>Female</asp:ListItem>
+         
+      </asp:DropDownList>
+      
+            <asp:RequiredFieldValidator
+                ID="RequiredFieldValidator9" runat="server" ControlToValidate="GenderDropDown"
+                ErrorMessage="*" InitialValue=""
+                Text="*" ValidationGroup="NewCompany"
+                SetFocusOnError="True" Style="font-weight: bold; 
+        font-size: 18px" ForeColor="Red"></asp:RequiredFieldValidator>  
+        </section>
+    </div>
 
 
      <%--      <div class="row">
@@ -143,10 +162,10 @@
               <label>National ID :   </label>
           </section>
         <section class="col col-lg-10" style="height:50px">           
-           <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control"
+           <asp:TextBox ID="NationalIdtxt" runat="server" CssClass="form-control"
                ValidationGroup="NewCompany" Width="50%" MaxLength="250"></asp:TextBox>
             <asp:RequiredFieldValidator
-                ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtReason"
+                ID="RequiredFieldValidator4" runat="server" ControlToValidate="NationalIdtxt"
                 ErrorMessage="*" InitialValue=""
                 Text="*" ValidationGroup="NewCompany"
                 SetFocusOnError="True" Style="font-weight: bold; 
@@ -159,10 +178,10 @@
               <label>Nationality:   </label>
           </section>
         <section class="col col-lg-10" style="height:50px">           
-           <asp:TextBox ID="TextBox4" runat="server" CssClass="form-control"
+           <asp:TextBox ID="Nationalitytxt" runat="server" CssClass="form-control"
                ValidationGroup="NewCompany" Width="50%" MaxLength="250"></asp:TextBox>
             <asp:RequiredFieldValidator
-                ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtReason"
+                ID="RequiredFieldValidator5" runat="server" ControlToValidate="Nationalitytxt"
                 ErrorMessage="*" InitialValue=""
                 Text="*" ValidationGroup="NewCompany"
                 SetFocusOnError="True" Style="font-weight: bold; 
@@ -181,7 +200,7 @@
               <label> Major:  </label>
           </section>
         <section class="col col-lg-10" style="height:50px">     
-         <asp:DropDownList ID="DropDownList2" runat="server" Width="50%">
+         <asp:DropDownList ID="Majordropdown" runat="server" Width="50%">
      <asp:ListItem>  Accounting                                            </asp:ListItem>
      <asp:ListItem>  Finance and Banking                                   </asp:ListItem>
      <asp:ListItem>  Entrepreneurship & Innovation                         </asp:ListItem>
@@ -204,7 +223,7 @@
       </asp:DropDownList>
       
             <asp:RequiredFieldValidator
-                ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtReason"
+                ID="RequiredFieldValidator7" runat="server" ControlToValidate="Majordropdown"
                 ErrorMessage="*" InitialValue=""
                 Text="*" ValidationGroup="NewCompany"
                 SetFocusOnError="True" Style="font-weight: bold; 
@@ -217,12 +236,12 @@
               <label> High School Name:  </label>
           </section>
         <section class="col col-lg-10" style="height:50px">           
-           <asp:TextBox ID="TextBox6" runat="server" CssClass="form-control"
+           <asp:TextBox ID="HSchoolNametxt" runat="server" CssClass="form-control"
                ValidationGroup="NewCompany" Width="50%" MaxLength="250">
 
            </asp:TextBox>
             <asp:RequiredFieldValidator
-                ID="RequiredFieldValidator" runat="server" ControlToValidate="txtReason"
+                ID="RequiredFieldValidator" runat="server" ControlToValidate="HSchoolNametxt"
                 ErrorMessage="*" InitialValue=""
                 Text="*" ValidationGroup="NewCompany"
                 SetFocusOnError="True" Style="font-weight: bold; 
@@ -230,14 +249,45 @@
         </section>
     </div>
 
-
+       <%--      <div class="row">
+         <section class="col col-lg-2" style="height:50px">
+              <label>Year Awarded(High School):   </label>
+          </section>
+        <section class="col col-lg-10" style="height:50px">           
+           <asp:TextBox ID="yeartxt" runat="server" CssClass="form-control"
+               ValidationGroup="NewCompany" Width="50%" MaxLength="250"></asp:TextBox>
+            <asp:RequiredFieldValidator
+                ID="RequiredFieldValidator10" runat="server" ControlToValidate="yeartxt"
+                ErrorMessage="*" InitialValue=""
+                Text="*" ValidationGroup="NewCompany"
+                SetFocusOnError="True" Style="font-weight: bold; 
+        font-size: 18px" ForeColor="Red"></asp:RequiredFieldValidator>  
+        </section>
+    </div>--%>
+        <div class="row">
+         <section class="col col-lg-2" style="height:50px">
+              <label> year:  </label>
+          </section>
+        <section class="col col-lg-10" style="height:50px">     
+         <asp:DropDownList ID="yeartxt" runat="server" Width="50%">
+            
+      </asp:DropDownList>
+       
+            <asp:RequiredFieldValidator
+                ID="RequiredFieldValidator10" runat="server" ControlToValidate="yeartxt"
+                ErrorMessage="*" InitialValue=""
+                Text="*" ValidationGroup="NewCompany"
+                SetFocusOnError="True" Style="font-weight: bold; 
+        font-size: 18px" ForeColor="Red"></asp:RequiredFieldValidator>  
+        </section>
+    </div>
 
                  <div class="row">
          <section class="col col-lg-2" style="height:50px">
               <label> Previous Degree (High School):  </label>
           </section>
         <section class="col col-lg-10" style="height:50px">     
-         <asp:DropDownList ID="DropDownList1" runat="server" Width="50%">
+         <asp:DropDownList ID="HschoolDropDown" runat="server" Width="50%">
               
               <asp:ListItem>If Other Specify</asp:ListItem>
           <asp:ListItem>Thanaweya Amma</asp:ListItem>
@@ -248,7 +298,7 @@
       </asp:DropDownList>
          <input id="Text1" type="text" />
             <asp:RequiredFieldValidator
-                ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtReason"
+                ID="RequiredFieldValidator8" runat="server" ControlToValidate="HschoolDropDown"
                 ErrorMessage="*" InitialValue=""
                 Text="*" ValidationGroup="NewCompany"
                 SetFocusOnError="True" Style="font-weight: bold; 
@@ -266,10 +316,10 @@
               <label>Name in Ceremonial Certificate:   </label>
           </section>
         <section class="col col-lg-10" style="height:50px">           
-           <asp:TextBox ID="TextBox7" runat="server" CssClass="form-control"
+           <asp:TextBox ID="CerNametxt" runat="server" CssClass="form-control"
                ValidationGroup="NewCompany" Width="50%" MaxLength="250"></asp:TextBox>
             <asp:RequiredFieldValidator
-                ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtReason"
+                ID="RequiredFieldValidator11" runat="server" ControlToValidate="CerNametxt"
                 ErrorMessage="*" InitialValue=""
                 Text="*" ValidationGroup="NewCompany"
                 SetFocusOnError="True" Style="font-weight: bold; 
@@ -284,10 +334,10 @@
                 <label>Calling Name :   </label>
               </section>
         <section class="col col-lg-10" style="height:50px">           
-           <asp:TextBox ID="TextBox9" runat="server" CssClass="form-control"
+           <asp:TextBox ID="CallingNametxt" runat="server" CssClass="form-control"
                ValidationGroup="NewCompany" Width="50%" MaxLength="250"></asp:TextBox>
             <asp:RequiredFieldValidator
-                ID="RequiredFieldValidator12" runat="server" ControlToValidate="txtReason"
+                ID="RequiredFieldValidator12" runat="server" ControlToValidate="CallingNametxt"
                 ErrorMessage="*" InitialValue=""
                 Text="*" ValidationGroup="NewCompany"
                 SetFocusOnError="True" Style="font-weight: bold; 
@@ -300,10 +350,10 @@
               <label>Emergency Contact + Relation:   </label>
           </section>
         <section class="col col-lg-10" style="height:50px">           
-           <asp:TextBox ID="TextBox10" runat="server" CssClass="form-control"
+           <asp:TextBox ID="Emrgtxt" runat="server" CssClass="form-control"
                ValidationGroup="NewCompany" Width="50%" MaxLength="250"></asp:TextBox>
             <asp:RequiredFieldValidator
-                ID="RequiredFieldValidator13" runat="server" ControlToValidate="txtReason"
+                ID="RequiredFieldValidator13" runat="server" ControlToValidate="Emrgtxt"
                 ErrorMessage="*" InitialValue=""
                 Text="*" ValidationGroup="NewCompany"
                 SetFocusOnError="True" Style="font-weight: bold; 
@@ -320,23 +370,23 @@
                         <label style="font-weight: bold;">Please attach Personal photo (professional photo white background) </label>
                         <br />
                         <div style="float: left">
-                            <asp:FileUpload ID="Excuse_FileUploadControl" runat="server" AllowMultiple="true" ValidationGroup="NewCompany2" onchange="IsFileSelected()" CssClass="FileTest" />
+                            <asp:FileUpload ID="photo_FileUploadControl" runat="server" AllowMultiple="true" ValidationGroup="photocomp" onchange="IsFileSelected()" CssClass="FileTest" />
                             <asp:RegularExpressionValidator ID="RegExValFileUploadFileType" runat="server"
-                                ControlToValidate="Excuse_FileUploadControl" ForeColor="Red"
-                                ErrorMessage="Only .jpg,.png,.jpeg,.gif , .pdf Files are allowed" Font-Bold="True" ValidationGroup="NewCompany2"
+                                ControlToValidate="photo_FileUploadControl" ForeColor="Red"
+                                ErrorMessage="Only .jpg,.png,.jpeg,.gif , .pdf Files are allowed" Font-Bold="True" ValidationGroup="photocomp"
                                 Font-Size="Medium"
                                 ValidationExpression="(.*?)\.(pdf|jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$"></asp:RegularExpressionValidator>
-                            <asp:CustomValidator ID="FileUploadCustomValidator" runat="server" ControlToValidate="Excuse_FileUploadControl"
-                                OnServerValidate="FileUploadCustomValidator_ServerValidate" ErrorMessage="*File must be less then 2 mb" ForeColor="Red" Display="Dynamic" ValidationGroup="NewCompany2"></asp:CustomValidator>
+                            <asp:CustomValidator ID="FileUploadCustomValidator" runat="server" ControlToValidate="photo_FileUploadControl"
+                                OnServerValidate="FileUploadCustomValidator_ServerValidate" ErrorMessage="*File must be less then 2 mb" ForeColor="Red" Display="Dynamic" ValidationGroup="photocomp"></asp:CustomValidator>
 
 
                         </div>
-                        <div style="float: left">
+                       <%-- <div style="float: left">
                            
                             <asp:Button CssClass="btn btn-primary" runat="server" ID="UploadButton" Text="Upload" OnClick="UploadButton_Click" ValidationGroup="NewCompany2" CausesValidation="true" />
-                        </div>
+                        </div>--%>
 
-                        <br />
+                        <%--<br />--%>
                         <br />
                         <asp:Label runat="server" ID="StatusLabel" Font-Bold="True" ForeColor="Green" Text=" Select Required files and click upload(Max.Size:2MB)" />
                     </section>

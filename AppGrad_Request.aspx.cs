@@ -19,6 +19,7 @@ public partial class DashBoard_AppGrad_Request : System.Web.UI.Page
     protected static string DashBoard = ConfigurationManager.ConnectionStrings["Dashboard"].ConnectionString;
     protected void Page_Load(object sender, EventArgs e)
     {
+        Year();
         if (!IsPostBack)
         {
             using (con = new SqlConnection(DashBoard))
@@ -42,49 +43,13 @@ public partial class DashBoard_AppGrad_Request : System.Web.UI.Page
         }
 
     }
-    protected void UploadButton_Click(object sender, EventArgs e)
-    {
-        Page.Validate("NewCompany2");
-        if (Page.IsValid)
-        {
-            //Continue with your logic
-
-            List<String> FilesName = new List<string>();
-            string FName = "";
-            if (Excuse_FileUploadControl.HasFiles & Excuse_FileUploadControl.PostedFile.ContentLength / 1048576 < 2)
-            {
-                try
-                {
-                    foreach (HttpPostedFile uploadedFile in Excuse_FileUploadControl.PostedFiles)
-                    {
-
-                        string test = Path.GetExtension(uploadedFile.FileName);
-                        FName = Session["Requestid"].ToString() ;
-                        //FName = Session["StuSmallId"].ToString() ;
-                        FilesName.Add(FName);
-                        uploadedFile.SaveAs(System.IO.Path.Combine(Server.MapPath("~/DashBoard/Photo_Path/"), FName));
-                      
-                    }
-                    StatusLabel.Text = "Upload status: File uploaded!";
-                    Session["FileUpload"] = FilesName;
-                }
-                catch (Exception ex)
-                {
-                    StatusLabel.Text = "Upload status: The file could not be uploaded. The following error occured: " + ex.Message;
-                }
-            }
-        }
-        else
-        {
-            //Display errors, hide controls, etc.
-        }
-    }
+  
     protected void FileUploadCustomValidator_ServerValidate(object source, ServerValidateEventArgs args)
     {
 
-        if (Excuse_FileUploadControl.HasFile)
+        if (photo_FileUploadControl.HasFile)
         {
-            if (Excuse_FileUploadControl.PostedFile.ContentLength / 1048576 >= 2)
+            if (photo_FileUploadControl.PostedFile.ContentLength / 1048576 >= 2)
             {
                 args.IsValid = false;
             }
@@ -94,32 +59,21 @@ public partial class DashBoard_AppGrad_Request : System.Web.UI.Page
             }
         }
     }
-    //private void PopulateYearsDropDownList()
-    //{
-    //    // Get the current year
-    //    int currentYear = DateTime.Now.Year;
+   
+        
+
+    protected void Year()
+    {
+
+        for (int i = 2010; i <= 2025; i++)
+        {
+            yeartxt.Items.Add(i.ToString());
 
 
-    //    int startYear = currentYear - 10;
-    //    int endYear = currentYear + 10;
+        }
+        yeartxt.Items.FindByValue(System.DateTime.Now.Year.ToString()).Selected = true;
+    }
 
-    //    // Loop through the range and add each year to the DropDownList
-    //    for (int year = startYear; year <= endYear; year++)
-    //    {
-    //        ListItem item = new ListItem(year.ToString(), year.ToString());
-    //        DropDownList3.Items.Add(item);
-    //    }
-    //}
-
-
-    //protected void Button1_Click(object sender, EventArgs e)
-    //{
-
-    //    string selectedYear = DropDownList3.SelectedValue;
-
-
-    //    Label1.Text = "You selected the year: " + selectedYear;
-    //}
 
     protected void btnSubmit_Click1(object sender, EventArgs e)
     {
@@ -130,9 +84,38 @@ public partial class DashBoard_AppGrad_Request : System.Web.UI.Page
         HiddenField hflevel = studentData1.FindControl("hflevel") as HiddenField;
         string Email = txtEmail.Text;
         long Requestid = 0;
-
-        if (Page.IsValid)
+        Page.Validate("photocomp");
+       
+            if (Page.IsValid)
         {
+            
+                //Continue with your logic
+
+                List<String> FilesName = new List<string>();
+                string FName = "";
+                if (photo_FileUploadControl.HasFiles & photo_FileUploadControl.PostedFile.ContentLength / 1048576 < 2)
+                {
+                    try
+                    {
+                        foreach (HttpPostedFile uploadedFile in photo_FileUploadControl.PostedFiles)
+                        {
+
+                            string test = Path.GetExtension(uploadedFile.FileName);
+                            FName = Session["Requestid"].ToString();
+                            //FName = Session["StuSmallId"].ToString() ;
+                            FilesName.Add(FName);
+                            uploadedFile.SaveAs(System.IO.Path.Combine(Server.MapPath("~/DashBoard/Photo_Path/"), FName));
+
+                        }
+                        StatusLabel.Text = "Upload status: File uploaded!";
+                        Session["FileUpload"] = FilesName;
+                    }
+                    catch (Exception ex)
+                    {
+                        StatusLabel.Text = "Upload status: The file could not be uploaded. The following error occured: " + ex.Message;
+                    }
+                }
+            }
             using (con = new SqlConnection(DashBoard))
             {
                 using (cmd = new SqlCommand("Add_DB_Request", con))
@@ -162,29 +145,31 @@ public partial class DashBoard_AppGrad_Request : System.Web.UI.Page
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Requestid", Requestid);
-                    cmd.Parameters.AddWithValue("@Name_English", txtReason.Text);
-                    cmd.Parameters.AddWithValue("@Name_Arabic", txtReason.Text);
-                    cmd.Parameters.AddWithValue("@Personal_Email", txtReason.Text);
-                    cmd.Parameters.AddWithValue("@Date_of_Birth", txtReason.Text);
-                    cmd.Parameters.AddWithValue("@National_ID", txtReason.Text);
-                    cmd.Parameters.AddWithValue("@Nationality", txtReason.Text);
-                    cmd.Parameters.AddWithValue("@Major", txtReason.Text);
-                    cmd.Parameters.AddWithValue("@High_School_Name", txtReason.Text);
-                    cmd.Parameters.AddWithValue("@Previous_Degree", txtReason.Text);
-            
-                //    cmd.Parameters.AddWithValue("@Year_Awarded", txtReason.Text);
-                    cmd.Parameters.AddWithValue("@Name_Ceremonial", txtReason.Text);
-                    cmd.Parameters.AddWithValue("@Name_Calling", txtReason.Text);
-                    cmd.Parameters.AddWithValue("@Emrg_Contact", txtReason.Text);
-                    cmd.Parameters.AddWithValue("@Personal_Photo", Excuse_FileUploadControl.FileName);
+                    cmd.Parameters.AddWithValue("@Name_English", ENametxt.Text);
+                    cmd.Parameters.AddWithValue("@Name_Arabic", ANametxt.Text);
+                    cmd.Parameters.AddWithValue("@Personal_Email", PEmailtxt.Text);
+                    cmd.Parameters.AddWithValue("@Date_of_Birth", BDate.Text);
+                    cmd.Parameters.AddWithValue("@Gender", GenderDropDown.Text);
+                    cmd.Parameters.AddWithValue("@National_ID", NationalIdtxt.Text);
+                    cmd.Parameters.AddWithValue("@Nationality", Nationalitytxt.Text);
+                    cmd.Parameters.AddWithValue("@Major", Majordropdown.Text);
+                    cmd.Parameters.AddWithValue("@High_School_Name", HSchoolNametxt.Text);
+                    cmd.Parameters.AddWithValue("@Previous_Degree", HschoolDropDown.Text);
+                        
+                    cmd.Parameters.AddWithValue("@Year_Awarded", yeartxt.Text);
+                    cmd.Parameters.AddWithValue("@Name_Ceremonial", CerNametxt.Text);
+                    cmd.Parameters.AddWithValue("@Name_Calling", CallingNametxt.Text);
+                    cmd.Parameters.AddWithValue("@Emrg_Contact", Emrgtxt.Text);
+                    cmd.Parameters.AddWithValue("@Personal_Photo", photo_FileUploadControl.FileName);
                     adr = new SqlDataAdapter(cmd);
                     dt = new DataTable();
                     adr.Fill(dt);
-
-                    Response.Redirect("Student_DB_Requests.aspx");
+                
+                Response.Redirect("Student_DB_Requests.aspx");
                 }
             }
         }
     }
-}
+
+
 //DateTime.Parse(Date).ToString("yyyy-MM-dd)
